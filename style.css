@@ -2,25 +2,87 @@ body {
     font-family: Arial, sans-serif;
     margin: 20px;
 }
+
+h1 {
+    font-size: 28px;
+    color: #333;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
 h2 {
     color: #ff0000;
     font-size: 24px;
     font-weight: bold;
+    text-align: center;
 }
 
 table {
-    width: 50%;
+    width: 100%; /* Ajusta para ocupar a largura completa da página */
+    max-width: 800px; /* Define um limite de largura */
+    margin: 0 auto; /* Centraliza a tabela */
     border-collapse: collapse;
     margin-bottom: 20px;
 }
+
 th, td {
     border: 1px solid #ddd;
-    padding: 8px;
+    padding: 12px; /* Aumenta o espaçamento dentro das células */
     text-align: center;
 }
+
 th {
     background-color: #f4f4f4;
+    font-weight: bold;
 }
+
 td {
     background-color: #f9f9f9;
+}
+
+form {
+    width: 100%;
+    max-width: 600px;
+    margin: 20px auto;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px; /* Espaçamento entre os elementos do formulário */
+}
+
+form label {
+    width: 100%; /* Mantém os labels em uma linha separada */
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+form input, form select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+button {
+    padding: 10px 20px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 10px;
+}
+
+button:hover {
+    background-color: #218838;
+}
+
+@media (max-width: 768px) {
+    table, form {
+        width: 100%; /* Ajusta a tabela e o formulário para ocupar 100% em telas menores */
+    }
+
+    th, td {
+        font-size: 14px; /* Reduz o tamanho do texto em telas menores */
+    }
 }

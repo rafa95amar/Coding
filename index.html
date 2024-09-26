@@ -4,22 +4,50 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cronograma de Estudos 2024</title>
-     <link rel="shortcut icon" href="/__woman_laptop_student_studing-128.webp" type="image/x-icon">
-     <link rel="stylesheet" href="style.css">
+    <link rel="shortcut icon" href="/__woman_laptop_student_studing-128.webp" type="image/x-icon">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
 <h1>Cronograma de Estudos 2024</h1>
 <h2>Faltam <span id="daysLeft"></span> dias</h2>
 
+<!-- Formulário para adicionar atividades -->
+<form id="taskForm">
+    <label for="day">Dia da semana:</label>
+    <select id="day">
+        <option value="Segunda-feira">Segunda-feira</option>
+        <option value="Terça-feira">Terça-feira</option>
+        <option value="Quarta-feira">Quarta-feira</option>
+        <option value="Quinta-feira">Quinta-feira</option>
+        <option value="Sexta-feira">Sexta-feira</option>
+        <option value="Sábado">Sábado</option>
+        <option value="Domingo">Domingo</option>
+    </select>
+    
+    <label for="time">Horário:</label>
+    <input type="text" id="time" placeholder="07:30 - 11:30" required>
+    
+    <label for="activity">Atividade:</label>
+    <input type="text" id="activity" placeholder="Inglês" required>
+    
+    <label for="topic">Tópico:</label>
+    <input type="text" id="topic" placeholder="Entertainment" required>
+    
+    <button type="submit">Adicionar Tarefa</button>
+</form>
 
 <table id="scheduleTable">
-    <tr>
-        <th>Dia</th>
-        <th>Horário</th>
-        <th>Atividade</th>
-        <th>Tópico</th>
-    </tr>
+    <thead>
+        <tr>
+            <th>Day</th>
+            <th>Time</th>
+            <th>Activity</th>
+            <th>Topic</th>
+        </tr>
+    </thead>
+    <tbody>
+    </tbody>
 </table>
 
 <!-- Inclui o arquivo de JavaScript externo -->
