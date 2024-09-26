@@ -2,6 +2,7 @@
 function loadSchedule() {
     const schedule = JSON.parse(localStorage.getItem('schedule')) || [];
     renderSchedule(schedule);
+    populateDeleteTaskDropdown(schedule); // Popula o dropdown de tarefas
     return schedule;
 }
 
@@ -15,7 +16,7 @@ function renderSchedule(schedule) {
     const tableBody = document.querySelector('#scheduleTable tbody');
     tableBody.innerHTML = '';  // Limpa a tabela antes de renderizar
 
-    schedule.forEach((entry) => {
+    schedule.forEach((entry, dayIndex) => {
         const rowCount = entry.times.length;
         const firstRow = document.createElement('tr');
         
@@ -24,40 +25,63 @@ function renderSchedule(schedule) {
         dayCell.textContent = entry.day;
         firstRow.appendChild(dayCell);
 
-        entry.times.forEach((time, index) => {
-            if (index === 0) {
-                const timeCell = document.createElement('td');
-                timeCell.textContent = time[0];
-                firstRow.appendChild(timeCell);
+        entry.times.forEach((time, timeIndex) => {
+            const row = timeIndex === 0 ? firstRow : document.createElement('tr');
 
-                const activityCell = document.createElement('td');
-                activityCell.textContent = time[1];
-                firstRow.appendChild(activityCell);
+            // Cria células para o horário, atividade e tópico
+            const timeCell = document.createElement('td');
+            timeCell.textContent = time[0];
+            row.appendChild(timeCell);
 
-                const topicCell = document.createElement('td');
-                topicCell.textContent = time[2];
-                firstRow.appendChild(topicCell);
+            const activityCell = document.createElement('td');
+            activityCell.textContent = time[1];
+            row.appendChild(activityCell);
 
-                tableBody.appendChild(firstRow);
-            } else {
-                const additionalRow = document.createElement('tr');
-                
-                const timeCell = document.createElement('td');
-                timeCell.textContent = time[0];
-                additionalRow.appendChild(timeCell);
+            const topicCell = document.createElement('td');
+            topicCell.textContent = time[2];
+            row.appendChild(topicCell);
 
-                const activityCell = document.createElement('td');
-                activityCell.textContent = time[1];
-                additionalRow.appendChild(activityCell);
-
-                const topicCell = document.createElement('td');
-                topicCell.textContent = time[2];
-                additionalRow.appendChild(topicCell);
-
-                tableBody.appendChild(additionalRow);
-            }
+            // Adiciona a linha à tabela
+            tableBody.appendChild(row);
         });
     });
+}
+
+// Função para preencher o dropdown de deletar tarefas
+function populateDeleteTaskDropdown(schedule) {
+    const deleteTaskSelect = document.getElementById('deleteTaskSelect');
+    deleteTaskSelect.innerHTML = '<option value="">Escolha uma tarefa</option>'; // Reseta o dropdown
+
+    schedule.forEach((entry, dayIndex) => {
+        entry.times.forEach((time, timeIndex) => {
+            const option = document.createElement('option');
+            option.value = `${dayIndex}-${timeIndex}`;
+            option.textContent = `${entry.day} - ${time[0]} - ${time[1]}`;
+            deleteTaskSelect.appendChild(option);
+        });
+    });
+}
+
+// Função para deletar uma tarefa
+function deleteTask() {
+    const selectedTask = document.getElementById('deleteTaskSelect').value;
+
+    if (!selectedTask) return; // Se nenhuma tarefa for selecionada, não faz nada
+
+    const [dayIndex, timeIndex] = selectedTask.split('-').map(Number);
+    const schedule = loadSchedule();
+
+    // Remove a tarefa selecionada
+    schedule[dayIndex].times.splice(timeIndex, 1);
+
+    // Se não houver mais tarefas no dia, remove o dia inteiro
+    if (schedule[dayIndex].times.length === 0) {
+        schedule.splice(dayIndex, 1);
+    }
+
+    saveSchedule(schedule);  // Salva o cronograma atualizado no localStorage
+    renderSchedule(schedule); // Re-renderiza a tabela
+    populateDeleteTaskDropdown(schedule); // Atualiza o dropdown
 }
 
 // Função para adicionar uma nova tarefa
@@ -87,6 +111,7 @@ function addTask(event) {
 
     saveSchedule(schedule);  // Salva o cronograma atualizado no localStorage
     renderSchedule(schedule); // Re-renderiza a tabela
+    populateDeleteTaskDropdown(schedule); // Atualiza o dropdown de tarefas
     document.getElementById('taskForm').reset();  // Limpa o formulário
 }
 
@@ -113,3 +138,6 @@ window.onload = function() {
 
 // Adiciona o evento de envio do formulário
 document.getElementById('taskForm').addEventListener('submit', addTask);
+
+// Adiciona o evento de clique no botão de deletar
+document.getElementById('deleteTaskButton').addEventListener('click', deleteTask);

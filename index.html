@@ -1,24 +1,21 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cronograma de Estudos 2024</title>
-    <link
-      rel="shortcut icon"
-      href="/__woman_laptop_student_studing-128.webp"
-      type="image/x-icon"
-    />
-    <link rel="stylesheet" href="style.css" />
-  </head>
-  <body>
-    <h1>Cronograma de Estudos 2024</h1>
-    <h2>Faltam <span id="daysLeft"></span> dias</h2>
+    <link rel="shortcut icon" href="/__woman_laptop_student_studing-128.webp" type="image/x-icon">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
 
-    <!-- Formulário para adicionar atividades -->
-    <form id="taskForm">
-      <label for="day">Dia da semana:</label>
-      <select id="day">
+<h1>Cronograma de Estudos 2024</h1>
+<h2>Faltam <span id="daysLeft"></span> dias</h2>
+
+<!-- Formulário para adicionar atividades -->
+<form id="taskForm">
+    <label for="day">Dia da semana:</label>
+    <select id="day">
         <option value="Sunday">Sunday</option>
         <option value="Monday">Monday</option>
         <option value="Tuesday">Tuesday</option>
@@ -26,33 +23,44 @@
         <option value="Thursday">Thursday</option>
         <option value="Friday">Friday</option>
         <option value="Saturday">Saturday</option>
-      </select>
+    </select>
+    
+    <label for="time">Horário:</label>
+    <input type="text" id="time" placeholder="07:30 - 11:30" required>
+    
+    <label for="activity">Materia:</label>
+    <input type="text" id="activity" placeholder="Inglês" required>
+    
+    <label for="topic">Tópico:</label>
+    <input type="text" id="topic" placeholder="Entertainment" required>
+    
+    <button type="submit">Adicionar Tarefa</button>
+</form>
 
-      <label for="time">Horário:</label>
-      <input type="text" id="time" placeholder="07:30 - 11:30" required />
-
-      <label for="activity">Materia:</label>
-      <input type="text" id="activity" placeholder="Inglês" required />
-
-      <label for="topic">Tópico:</label>
-      <input type="text" id="topic" placeholder="Entertainment" required />
-
-      <button type="submit">Adicionar Tarefa</button>
-    </form>
-
-    <table id="scheduleTable">
-      <thead>
+<!-- Tabela para exibir o cronograma -->
+<table id="scheduleTable">
+    <thead>
         <tr>
-          <th>Day</th>
-          <th>Time</th>
-          <th>Subject</th>
-          <th>Topic</th>
+            <th>Dia</th>
+            <th>Horário</th>
+            <th>Materia</th>
+            <th>Tópico</th>
         </tr>
-      </thead>
-      <tbody></tbody>
-    </table>
+    </thead>
+    <tbody>
+    </tbody>
+</table>
 
-    <!-- Inclui o arquivo de JavaScript externo -->
-    <script src="script.js"></script>
-  </body>
+<!-- Dropdown para selecionar a tarefa a ser deletada -->
+<label for="deleteTaskSelect">Selecione uma tarefa para deletar:</label>
+<select id="deleteTaskSelect">
+    <option value="">Escolha uma tarefa</option>
+</select>
+<button id="deleteTaskButton">Deletar Tarefa</button>
+
+<!-- Inclui o arquivo de JavaScript externo -->
+<script src="script.js"></script>
+
+</body>
 </html>
+
