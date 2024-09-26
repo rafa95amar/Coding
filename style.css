@@ -3,10 +3,26 @@ html, body {
     height: 100%;
     margin: 0;
     display: flex;
-    justify-content: flex-start;
+    justify-content: flex-start; /* Alinha o conteúdo no topo da página */
     align-items: center;
     flex-direction: column;
 }
+.title-container {
+    display: flex;
+    flex-direction: column;
+
+    /* Centraliza verticalmente */
+    align-items: center;      /* Centraliza horizontalmente */
+    text-align: center;       /* Centraliza o texto */
+    width: 80%;
+    margin-bottom: 20px;      /* Adiciona espaçamento abaixo dos títulos */
+}
+.title-container h2 {
+    text-align: center; /* Centraliza o texto */
+    display: block; /* Garante que o h2 ocupe uma linha inteira */
+    margin: 10px 0; /* Ajusta o espaçamento em torno do h2 */
+}
+
 
 body {
     font-family: 'Roboto', sans-serif;
@@ -19,64 +35,84 @@ body {
 .container {
     width: 100%;
     max-width: 800px;
-    padding: 20px;
+    padding: 30px;
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
+
+/* Estilos para o cabeçalho */
 /* Estilos para o cabeçalho */
 h1, h2 {
     width: 100%;
-    display: block;
+    display: flex; /* Garante que os títulos sejam exibidos */
+    margin: 0; /* Remove margens desnecessárias, se for o caso */
 }
 
 h1 {
     font-size: 2.5em;
-    color: #333;
+    color: #333; /* Garante que o título seja visível com cor escura */
     margin-bottom: 10px;
 }
 
 h2 {
     font-size: 1.8em;
-    color: #ff4500;
+    color: #ff4500; /* Cor de destaque para o subtítulo */
     margin-bottom: 40px;
 }
 
-/* Estilos para o formulário */
-form {
+
+/* Estilos para o primeiro formulário */
+#taskForm {
     display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 10px;
+    flex-direction: column; /* Mantém o formulário em coluna */
+    align-items: stretch;   /* Ocupa toda a largura disponível */
+    gap: 20px;              /* Espaçamento entre os grupos */
     max-width: 600px;
     margin: 0 auto 40px;
 }
 
-label {
-    width: 100%;
-    font-size: 1em;
-    text-align: left;
+#taskForm .form-group {
+    display: flex;
+    flex-direction: column; /* Alinha label e input em coluna */
+    align-items: stretch;
+    gap: 10px;               /* Espaçamento entre label e input */
 }
 
-input, select {
-    width: calc(50% - 10px);
+#taskForm .form-group label {
+    width: 100%;             /* Define a label para ocupar 100% */
+    text-align: left;      /* Alinha o texto das labels à esquerda */
+}
+
+#taskForm .form-group select,
+#taskForm .form-group input {
     padding: 10px;
     border: 1px solid #ddd;
     border-radius: 5px;
+    box-sizing: border-box;
+    width: 100%;           /* Garante que todos os inputs ocupem 100% da largura */
 }
 
-button {
+/* Botão alinhado abaixo do último input */
+#taskForm .form-group.button-group {
+    display: flex;
+    flex-direction: column; /* Alinha o botão em coluna */
+    align-items: stretch;
+}
+
+#taskForm .form-group.button-group button {
+    width: 100%;            /* Garante que o botão ocupe toda a largura */
+    padding: 12px 20px;
     background-color: #ff4500;
     color: #fff;
-    padding: 12px 20px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
     font-size: 1em;
 }
 
-button:hover {
+#taskForm .form-group.button-group button:hover {
     background-color: #e03e00;
 }
 
@@ -118,9 +154,11 @@ td {
 
 .form-actions select {
     width: 100%;
+    max-width: 250px; /* Tamanho igual para dropdowns */
     padding: 10px;
     border-radius: 5px;
     border: 1px solid #ddd;
+    box-sizing: border-box;
 }
 
 .form-actions button {
@@ -154,12 +192,29 @@ td {
 
 /* Responsividade */
 @media (max-width: 768px) {
-    input, select {
+    .form-group {
+        flex-direction: column; /* Empilha label e input em dispositivos menores */
+        align-items: stretch;
+        text-align: left;
+    }
+
+    .form-group label {
+        text-align: left;
         width: 100%;
+        margin-bottom: 5px;
+    }
+
+    .form-group.button-group {
+        flex-direction: column; /* Empilha botão em dispositivos menores */
+        align-items: stretch;
+    }
+
+    .form-group.button-group button {
+        width: 100%; /* Garante que o botão ocupe 100% da largura */
     }
 
     button {
-        width: 100%;
+        width: 100%; /* Garante que o botão ocupe 100% da largura */
     }
 
     table {

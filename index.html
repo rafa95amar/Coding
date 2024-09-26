@@ -4,47 +4,64 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cronograma de Estudos 2024</title>
-    <link rel="shortcut icon" href="/__woman_laptop_student_studing-128.webp" type="image/x-icon">
+    <link rel="shortcut icon" href="images/__woman_laptop_student_studing-128.webp" type="image/x-icon">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="container">
-        <h1>Cronograma de Estudos 2024</h1>
-        <h2>Faltam <span id="daysLeft"></span> dias</h2>
+        <div class="title-container">
+            <h1>Cronograma de Estudos 2024</h1>
+            <h2>Faltam <span id="daysLeft"></span> dias</h2>
+        </div>
+        
 
         <!-- Formulário para adicionar atividades -->
         <form id="taskForm">
-            <label for="day">Day:</label>
-            <select id="day">
-                <option value="Sunday">Sunday</option>
-                <option value="Monday">Monday</option>
-                <option value="Tuesday">Tuesday</option>
-                <option value="Wednesday">Wednesday</option>
-                <option value="Thursday">Thursday</option>
-                <option value="Friday">Friday</option>
-                <option value="Saturday">Saturday</option>
-            </select>
+            <div class="form-group">
+                <label for="day">Dia:</label>
+                <select id="day" name="day" required>
+                    <option value="">Selecione um dia</option>
+                    <option value="Sunday">Domingo</option>
+                    <option value="Monday">Segunda-feira</option>
+                    <option value="Tuesday">Terça-feira</option>
+                    <option value="Wednesday">Quarta-feira</option>
+                    <option value="Thursday">Quinta-feira</option>
+                    <option value="Friday">Sexta-feira</option>
+                    <option value="Saturday">Sábado</option>
+                </select>
+            </div>
 
-            <label for="time">Time:</label>
-            <input type="text" id="time" placeholder="07:30 - 11:30" required>
+            <div class="form-group">
+                <label for="time">Horário:</label>
+                <input type="text" id="time" name="time" placeholder="07:30 - 11:30" required>
+            </div>
 
-            <label for="activity">Subject:</label>
-            <input type="text" id="activity" placeholder="English" required>
+            <div class="form-group">
+                <label for="activity">Matéria:</label>
+                <input type="text" id="activity" name="activity" placeholder="Inglês" required>
+            </div>
 
-            <label for="topic">Topic:</label>
-            <input type="text" id="topic" placeholder="Entertainment" required>
+            <div class="form-group">
+                <label for="topic">Tópico:</label>
+                <input type="text" id="topic" name="topic" placeholder="Entretenimento" required>
+            </div>
 
-            <button type="submit">Add Task</button>
+            <!-- Botão "Add Task" com id corrigido -->
+            <!-- Botão "Add Task" dentro de um .form-group.button-group -->
+<div class="form-group button-group">
+    <button id="addTaskButton" type="submit">Adicionar Tarefa</button>  
+</div>
+
         </form>
-
+       
         <!-- Tabela para exibir o cronograma -->
         <table id="scheduleTable">
             <thead>
                 <tr>
-                    <th>Day</th>
-                    <th>Time</th>
-                    <th>Subject</th>
-                    <th>Topic</th>
+                    <th>Dia</th>
+                    <th>Horário</th>
+                    <th>Matéria</th>
+                    <th>Tópico</th>
                 </tr>
             </thead>
             <tbody>
@@ -54,19 +71,19 @@
         <!-- Dropdowns e botões organizados -->
         <div class="form-actions">
             <div>
-                <label for="editTaskSelect">Select a task to edit:</label>
+                <label for="editTaskSelect">Selecione uma tarefa para editar:</label>
                 <select id="editTaskSelect">
-                    <option value="">Choose a task</option>
+                    <option value="">Escolha uma tarefa</option>
                 </select>
-                <button id="editTaskButton">Edit Task</button>
+                <button id="editTaskButton">Editar Tarefa</button>
             </div>
 
             <div>
-                <label for="deleteTaskSelect">Select a task to delete:</label>
+                <label for="deleteTaskSelect">Selecione uma tarefa para deletar:</label>
                 <select id="deleteTaskSelect">
-                    <option value="">Choose a task</option>
+                    <option value="">Escolha uma tarefa</option>
                 </select>
-                <button id="deleteTaskButton">Delete Task</button>
+                <button id="deleteTaskButton">Deletar Tarefa</button>
             </div>
         </div>
     </div>
