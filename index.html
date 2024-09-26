@@ -4,71 +4,73 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cronograma de Estudos 2024</title>
-    <link rel="shortcut icon" href="/__woman_laptop_student_studing-128.webp" type="image/x-icon">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <div class="container">
+        <h1>Cronograma de Estudos 2024</h1>
+        <h2>Faltam <span id="daysLeft"></span> dias</h2>
 
-<h1>Cronograma de Estudos 2024</h1>
-<h2>Faltam <span id="daysLeft"></span> dias</h2>
+        <!-- Formulário para adicionar atividades -->
+        <form id="taskForm">
+            <label for="day">Day:</label>
+            <select id="day">
+                <option value="Sunday">Sunday</option>
+                <option value="Monday">Monday</option>
+                <option value="Tuesday">Tuesday</option>
+                <option value="Wednesday">Wednesday</option>
+                <option value="Thursday">Thursday</option>
+                <option value="Friday">Friday</option>
+                <option value="Saturday">Saturday</option>
+            </select>
 
-<!-- Formulário para adicionar atividades -->
-<form id="taskForm">
-    <label for="day">Day:</label>
-    <select id="day">
-        <option value="Sunday">Sunday</option>
-        <option value="Monday">Monday</option>
-        <option value="Tuesday">Tuesday</option>
-        <option value="Wednesday">Wednesday</option>
-        <option value="Thursday">Thursday</option>
-        <option value="Friday">Friday</option>
-        <option value="Saturday">Saturday</option>
-    </select>
-    
-    <label for="time">Time:</label>
-    <input type="text" id="time" placeholder="07:30 - 11:30" required>
+            <label for="time">Time:</label>
+            <input type="text" id="time" placeholder="07:30 - 11:30" required>
 
-    <label for="activity">Subject:</label>
-    <input type="text" id="activity" placeholder="English" required>
+            <label for="activity">Subject:</label>
+            <input type="text" id="activity" placeholder="English" required>
 
-    <label for="topic">Topic:</label>
-    <input type="text" id="topic" placeholder="Entertainment" required>
+            <label for="topic">Topic:</label>
+            <input type="text" id="topic" placeholder="Entertainment" required>
 
-    <button type="submit">Add Task</button>
-</form>
+            <button type="submit">Add Task</button>
+        </form>
 
-<!-- Tabela para exibir o cronograma -->
-<table id="scheduleTable">
-    <thead>
-        <tr>
-            <th>Day</th>
-            <th>Time</th>
-            <th>Subject</th>
-            <th>Topic</th>
-        </tr>
-    </thead>
-    <tbody>
-    </tbody>
-</table>
+        <!-- Tabela para exibir o cronograma -->
+        <table id="scheduleTable">
+            <thead>
+                <tr>
+                    <th>Day</th>
+                    <th>Time</th>
+                    <th>Subject</th>
+                    <th>Topic</th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
 
-<!-- Dropdown para selecionar a tarefa a ser editada -->
-<label for="editTaskSelect">Select a task to edit:</label>
-<select id="editTaskSelect">
-    <option value="">Choose a task</option>
-</select>
-<button id="editTaskButton">Edit Task</button>
+        <!-- Dropdowns e botões organizados -->
+        <div class="form-actions">
+            <div>
+                <label for="editTaskSelect">Select a task to edit:</label>
+                <select id="editTaskSelect">
+                    <option value="">Choose a task</option>
+                </select>
+                <button id="editTaskButton">Edit Task</button>
+            </div>
 
-<!-- Dropdown para selecionar a tarefa a ser deletada -->
-<label for="deleteTaskSelect">Select a task to delete:</label>
-<select id="deleteTaskSelect">
-    <option value="">Choose a task</option>
-</select>
-<button id="deleteTaskButton">Delete Task</button>
+            <div>
+                <label for="deleteTaskSelect">Select a task to delete:</label>
+                <select id="deleteTaskSelect">
+                    <option value="">Choose a task</option>
+                </select>
+                <button id="deleteTaskButton">Delete Task</button>
+            </div>
+        </div>
+    </div>
 
-<!-- Inclui o arquivo de JavaScript externo -->
-<script src="script.js"></script>
-
+    <!-- Inclui o arquivo de JavaScript externo -->
+    <script src="script.js"></script>
 </body>
 </html>
-
-
