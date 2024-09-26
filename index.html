@@ -26,16 +26,15 @@
     </select>
     
     <label for="time">Time:</label>
-<input type="text" id="time" placeholder="07:30 - 11:30" required>
+    <input type="text" id="time" placeholder="07:30 - 11:30" required>
 
-<label for="activity">Subject:</label>
-<input type="text" id="activity" placeholder="English" required>
+    <label for="activity">Subject:</label>
+    <input type="text" id="activity" placeholder="English" required>
 
-<label for="topic">Topic:</label>
-<input type="text" id="topic" placeholder="Entertainment" required>
+    <label for="topic">Topic:</label>
+    <input type="text" id="topic" placeholder="Entertainment" required>
 
-<button type="submit">Add Task</button>
-
+    <button type="submit">Add Task</button>
 </form>
 
 <!-- Tabela para exibir o cronograma -->
@@ -43,15 +42,21 @@
     <thead>
         <tr>
             <th>Day</th>
-<th>Time</th>
-<th>Subject</th>
-<th>Topic</th>
-
+            <th>Time</th>
+            <th>Subject</th>
+            <th>Topic</th>
         </tr>
     </thead>
     <tbody>
     </tbody>
 </table>
+
+<!-- Dropdown para selecionar a tarefa a ser editada -->
+<label for="editTaskSelect">Select a task to edit:</label>
+<select id="editTaskSelect">
+    <option value="">Choose a task</option>
+</select>
+<button id="editTaskButton">Edit Task</button>
 
 <!-- Dropdown para selecionar a tarefa a ser deletada -->
 <label for="deleteTaskSelect">Select a task to delete:</label>
@@ -65,4 +70,5 @@
 
 </body>
 </html>
+
 
