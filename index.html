@@ -25,16 +25,17 @@
         <option value="Saturday">Saturday</option>
     </select>
     
-    <label for="time">Horário:</label>
-    <input type="text" id="time" placeholder="07:30 - 11:30" required>
-    
-    <label for="activity">Materia:</label>
-    <input type="text" id="activity" placeholder="Inglês" required>
-    
-    <label for="topic">Tópico:</label>
-    <input type="text" id="topic" placeholder="Entertainment" required>
-    
-    <button type="submit">Adicionar Tarefa</button>
+    <label for="time">Time:</label>
+<input type="text" id="time" placeholder="07:30 - 11:30" required>
+
+<label for="activity">Subject:</label>
+<input type="text" id="activity" placeholder="English" required>
+
+<label for="topic">Topic:</label>
+<input type="text" id="topic" placeholder="Entertainment" required>
+
+<button type="submit">Add Task</button>
+
 </form>
 
 <!-- Tabela para exibir o cronograma -->
@@ -53,11 +54,11 @@
 </table>
 
 <!-- Dropdown para selecionar a tarefa a ser deletada -->
-<label for="deleteTaskSelect">Selecione uma tarefa para deletar:</label>
+<label for="deleteTaskSelect">Select a task to delete:</label>
 <select id="deleteTaskSelect">
-    <option value="">Escolha uma tarefa</option>
+    <option value="">Choose a task</option>
 </select>
-<button id="deleteTaskButton">Deletar Tarefa</button>
+<button id="deleteTaskButton">Delete Task</button>
 
 <!-- Inclui o arquivo de JavaScript externo -->
 <script src="script.js"></script>
