@@ -217,8 +217,8 @@ function populateDeleteTaskDropdown(schedule) {
     const deleteTaskSelect = document.getElementById('deleteTaskSelect');
     const editTaskSelect = document.getElementById('editTaskSelect'); // Dropdown para editar
 
-    deleteTaskSelect.innerHTML = '<option value="">Choose a task</option>';
-    editTaskSelect.innerHTML = '<option value="">Choose a task</option>'; // Reseta o dropdown de editar
+    deleteTaskSelect.innerHTML = '<option value="">Escolha uma tarefa</option>';
+    editTaskSelect.innerHTML = '<option value="">Escolha uma tarefa</option>';
 
     schedule.forEach((entry, dayIndex) => {
         entry.times.forEach((time, timeIndex) => {
