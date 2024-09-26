@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cronograma de Estudos 2024</title>
     <link rel="shortcut icon" href="./computadores.png" type="image/png">
-
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -15,7 +14,6 @@
             <h2>Faltam <span id="daysLeft"></span> dias</h2>
         </div>
         
-
         <!-- Formulário para adicionar atividades -->
         <form id="taskForm">
             <div class="form-group">
@@ -34,25 +32,34 @@
 
             <div class="form-group">
                 <label for="time">Horário:</label>
-                <input type="text" id="time" name="time" placeholder="07:30 - 11:30" required>
+                <select id="time" name="time" required>
+                    <option value="">Selecione um horário</option>
+                    <option value="07:30 - 11:30">07:30 - 11:30</option>
+                    <option value="13:30 - 17:30">13:30 - 17:30</option>
+                    <option value="20:00 - 22:00">20:00 - 22:00</option>
+                </select>
             </div>
 
             <div class="form-group">
                 <label for="activity">Matéria:</label>
-                <input type="text" id="activity" name="activity" placeholder="Inglês" required>
+                <select id="activity" name="activity" required>
+                    <option value="">Selecione uma matéria</option>
+                    <option value="Inglês">Inglês</option>
+                    <option value="Língua Portuguesa">Língua Portuguesa</option>
+                    <option value="Informática">Informática</option>
+                    <option value="Programação">Programação</option>
+                </select>
             </div>
+            
 
             <div class="form-group">
                 <label for="topic">Tópico:</label>
                 <input type="text" id="topic" name="topic" placeholder="Entretenimento" required>
             </div>
 
-            <!-- Botão "Add Task" com id corrigido -->
-            <!-- Botão "Add Task" dentro de um .form-group.button-group -->
-<div class="form-group button-group">
-    <button id="addTaskButton" type="submit">Adicionar Tarefa</button>  
-</div>
-
+            <div class="form-group button-group">
+                <button id="addTaskButton" type="submit">Adicionar Tarefa</button>  
+            </div>
         </form>
        
         <!-- Tabela para exibir o cronograma -->
