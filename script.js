@@ -107,6 +107,7 @@ function deleteTask() {
 }
 
 // Função para adicionar uma nova tarefa
+// Função para adicionar uma nova tarefa
 function addTask(event) {
     event.preventDefault(); // Previne o comportamento padrão do formulário
 
@@ -134,8 +135,39 @@ function addTask(event) {
     saveSchedule(schedule);  // Salva o cronograma atualizado no localStorage
     renderSchedule(schedule); // Re-renderiza a tabela
     populateDeleteTaskDropdown(schedule); // Atualiza o dropdown de tarefas
+    somarTempoPorMateria();  // Atualiza a contagem de tempo por matéria
     document.getElementById('taskForm').reset();  // Limpa o formulário
 }
+
+// Função para deletar uma tarefa
+// Função para deletar uma tarefa
+// Função para deletar uma tarefa
+function deleteTask() {
+    const selectedTask = document.getElementById('deleteTaskSelect').value;
+
+    if (!selectedTask) return; // Se nenhuma tarefa for selecionada, não faz nada
+
+    const [dayIndex, timeIndex] = selectedTask.split('-').map(Number);
+    const schedule = loadSchedule();
+
+    // Remove a tarefa selecionada
+    schedule[dayIndex].times.splice(timeIndex, 1);
+
+    // Se não houver mais tarefas no dia, remove o dia inteiro
+    if (schedule[dayIndex].times.length === 0) {
+        schedule.splice(dayIndex, 1);
+    }
+
+    saveSchedule(schedule);  // Salva o cronograma atualizado no localStorage
+    renderSchedule(schedule); // Re-renderiza a tabela
+    populateDeleteTaskDropdown(schedule); // Atualiza o dropdown de tarefas
+    somarTempoPorMateria();  // Atualiza a contagem de tempo por matéria
+}
+
+// Adiciona o evento de clique no botão de deletar
+document.getElementById('deleteTaskButton').addEventListener('click', deleteTask);
+
+
 
 // Calcula os dias até o Natal (25 de dezembro)
 function calculateDaysUntilChristmas() {
@@ -263,6 +295,7 @@ function editTask() {
 }
 
 // Função para salvar a tarefa editada
+
 function saveEditedTask(dayIndex, timeIndex) {
     const schedule = loadSchedule();
 
@@ -276,15 +309,18 @@ function saveEditedTask(dayIndex, timeIndex) {
     saveSchedule(schedule);  // Salva o cronograma atualizado no localStorage
     renderSchedule(schedule); // Re-renderiza a tabela
     populateDeleteTaskDropdown(schedule); // Atualiza o dropdown de tarefas
+    somarTempoPorMateria();  // Atualiza a contagem de tempo por matéria
 
     // Restaura o botão de adicionar
     const addButton = document.querySelector('#taskForm button');
     addButton.textContent = 'Add Task';
-    addButton.onclick = addTask; // Restaura a função original
+    addButton.onclick = addTask; // Restaura a função original de adicionar tarefa
     document.getElementById('taskForm').reset();  // Limpa o formulário
 }
 
+
 // Função para deletar uma tarefa (caso você precise dela)
+// Função para deletar uma tarefa
 function deleteTask() {
     const selectedTask = document.getElementById('deleteTaskSelect').value;
 
@@ -303,7 +339,8 @@ function deleteTask() {
 
     saveSchedule(schedule);  // Salva o cronograma atualizado no localStorage
     renderSchedule(schedule); // Re-renderiza a tabela
-    populateDeleteTaskDropdown(schedule); // Atualiza o dropdown
+    populateDeleteTaskDropdown(schedule); // Atualiza o dropdown de tarefas
+    somarTempoPorMateria();  // Atualiza a contagem de tempo por matéria
 }
 
 // Carrega o cronograma e calcula os dias restantes ao carregar a página
@@ -319,3 +356,71 @@ document.getElementById('editTaskButton').addEventListener('click', editTask);
 document.getElementById('deleteTaskButton').addEventListener('click', deleteTask);
 
 
+function calcularDuracaoEmMinutos(horario) {
+    const [horaInicio, horaFim] = horario.split(" - ");
+    const [horaInicioHoras, horaInicioMinutos] = horaInicio.split(":").map(Number);
+    const [horaFimHoras, horaFimMinutos] = horaFim.split(":").map(Number);
+
+    const inicioEmMinutos = horaInicioHoras * 60 + horaInicioMinutos;
+    const fimEmMinutos = horaFimHoras * 60 + horaFimMinutos;
+
+    return fimEmMinutos - inicioEmMinutos;
+}
+
+function somarTempoPorMateria() {
+    const schedule = loadSchedule(); // Carrega o cronograma do localStorage
+    const tempoPorMateria = {};
+
+    // Somar o tempo gasto por matéria
+    schedule.forEach(entry => {
+        entry.times.forEach(time => {
+            const [horario, materia] = time;
+
+            const duracao = calcularDuracaoEmMinutos(horario);
+
+            if (!tempoPorMateria[materia]) {
+                tempoPorMateria[materia] = 0;
+            }
+
+            tempoPorMateria[materia] += duracao;
+        });
+    });
+
+    // Exibir os resultados na tabela
+    renderizarTempoPorMateria(tempoPorMateria);
+}
+
+// Função para renderizar os dados no HTML
+function renderizarTempoPorMateria(tempoPorMateria) {
+    const tableBody = document.querySelector('#tempoMateriaTable tbody');
+    tableBody.innerHTML = '';  // Limpar a tabela antes de renderizar
+
+    // Preencher a tabela com o tempo total de cada matéria
+    for (const materia in tempoPorMateria) {
+        const row = document.createElement('tr');
+        
+        const materiaCell = document.createElement('td');
+        materiaCell.textContent = materia;
+        row.appendChild(materiaCell);
+
+        // Converter minutos para horas
+        const tempoEmHoras = tempoPorMateria[materia] / 60;
+
+        // Verificar se o tempo em horas é inteiro
+        const tempoExibido = Number.isInteger(tempoEmHoras) ? tempoEmHoras : tempoEmHoras.toFixed(2);
+
+        const tempoCell = document.createElement('td');
+        tempoCell.textContent = tempoExibido;
+        row.appendChild(tempoCell);
+
+        tableBody.appendChild(row);
+    }
+}
+
+
+// Chamar a função para somar e exibir o tempo por matéria ao carregar a página
+window.onload = function() {
+    loadSchedule();
+    calculateDaysUntilChristmas();
+    somarTempoPorMateria(); // Adiciona essa linha para calcular e exibir os tempos
+};
