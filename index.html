@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cronograma de Estudos 2024</title>
-    <link rel="shortcut icon" href="./computadores.png" type="image/png">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -41,28 +40,27 @@
                     <option value="15:30 - 19:30">15:30 - 19:30</option>
                     <option value="16:30 - 20:30">16:30 - 20:30</option>
                     <option value="20:30 - 22:30">20:30 - 22:30</option>
+                    <option value="21:30 - 22:30">21:30 - 22:30</option>
+                    
                 </select>
             </div>
 
             <div class="form-group">
                 <label for="activity">Matéria:</label>
                 <select id="activity" name="activity" required>
-                    <option value="">Selecione uma matéria</option>
-                    <option value="Inglês-V">Vocabulary</option>
-                    <option value="Inglês-P">Pronunciation</option>
-                    <option value="Inglês-L">Listening</option>
+                    <option value="Selecione uma matéria">Selecione uma matéria</option>
+                    <option value="Vocabulary">Vocabulary</option>
+                    <option value="Pronunciation">Pronunciation</option>
+                    <option value="Listening">Listening</option>
                     <option value="Língua Portuguesa">Língua Portuguesa</option>
                     <option value="Matemática">Matemática</option>
                     <option value="Informática">Informática</option>
-                    
-                    
                 </select>
             </div>
-            
 
             <div class="form-group">
                 <label for="topic">Tópico:</label>
-                <input type="text" id="topic" name="topic" placeholder="Entretenimento" required>
+                <input type="text" id="topic" name="topic" required>
             </div>
 
             <div class="form-group button-group">
@@ -78,6 +76,7 @@
                     <th>Horário</th>
                     <th>Matéria</th>
                     <th>Tópico</th>
+                    <th>Carga Horária</th> <!-- Nova coluna -->
                 </tr>
             </thead>
             <tbody>
@@ -103,8 +102,10 @@
             </div>
         </div>
     </div>
+    <button onclick="clearLocalStorage()">Limpar LocalStorage</button>
 
     <!-- Inclui o arquivo de JavaScript externo -->
     <script src="script.js"></script>
 </body>
 </html>
+
