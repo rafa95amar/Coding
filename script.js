@@ -169,7 +169,7 @@ document.getElementById('deleteTaskButton').addEventListener('click', deleteTask
 
 
 
-// Calcula os dias até o Natal (25 de dezembro)
+
 function calculateDaysUntilChristmas() {
     const today = new Date();
     const currentYear = today.getFullYear();
