@@ -172,17 +172,17 @@ document.getElementById('deleteTaskButton').addEventListener('click', deleteTask
 
 function calculateDaysUntilChristmas() {
     const today = new Date();
-    const currentYear = today.getFullYear();
-    const christmasDate = new Date(currentYear, 11, 23);
+    const christmasDate = new Date(2025, 11, 23); // Define o Natal para o ano de 2025
 
     if (today > christmasDate) {
-        christmasDate.setFullYear(currentYear + 1);
+        christmasDate.setFullYear(2025); // Atualize para o ano desejado
     }
 
     const differenceInMillis = christmasDate - today;
     const daysLeft = Math.ceil(differenceInMillis / (1000 * 60 * 60 * 24));
     document.getElementById('daysLeft').textContent = `${daysLeft}`;
 }
+
 
 // Carrega o cronograma e calcula os dias restantes ao carregar a página
 window.onload = function() {
