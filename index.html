@@ -14,7 +14,7 @@
         <h2>Faltam <span id="daysLeft"></span> dias</h2>
       </div>
 
-      <!-- Formulário para adicionar atividades -->
+      
       <form id="taskForm">
         <div class="form-group">
           <label for="day">Dia:</label>
@@ -32,12 +32,15 @@
 
         <div class="form-group">
           <label for="time">Horário:</label>
+          <!-- no minimo 5 dias por semana -->
           <select id="time" name="time" required>
             <option value="">Selecione um horário</option>
             <option value="07:00 - 11:00">07:00 - 11:00</option>
             <option value="13:30 - 15:30">13:30 - 15:30</option>
             <option value="16:00 - 18:00">16:00 - 18:00</option>
+            <option value="19:00 - 21:00">19:00 - 21:00</option>
             <option value="20:00 - 21:00">20:00 - 21:00</option>
+            <option value="21:30 - 22:30">21:30 - 22:30</option>
             
           </select>
         </div>
@@ -47,6 +50,7 @@
           <select id="activity" name="activity" required>
             <option value="Selecione uma matéria">Selecione uma matéria</option>
             <option value="building vocabulary">Building Vocabulary</option>
+            <option value="watch-netflix">Watch-Netflix</option>
             <option value="flascard">Flascard</option>
             <option value="Listening">Listening</option>
             <option value="Listening Music">Listening Music</option>
