@@ -362,7 +362,12 @@ function calcularDuracaoEmMinutos(horario) {
     const [horaFimHoras, horaFimMinutos] = horaFim.split(":").map(Number);
 
     const inicioEmMinutos = horaInicioHoras * 60 + horaInicioMinutos;
-    const fimEmMinutos = horaFimHoras * 60 + horaFimMinutos;
+    let fimEmMinutos = horaFimHoras * 60 + horaFimMinutos;
+
+    // Se o horário de fim for menor que o de início, significa que passou para o dia seguinte
+    if (fimEmMinutos < inicioEmMinutos) {
+        fimEmMinutos += 24 * 60; // Adiciona 24 horas em minutos
+    }
 
     return fimEmMinutos - inicioEmMinutos;
 }
@@ -390,7 +395,6 @@ function somarTempoPorMateria() {
     renderizarTempoPorMateria(tempoPorMateria);
 }
 
-// Função para renderizar os dados no HTML
 function renderizarTempoPorMateria(tempoPorMateria) {
     const tableBody = document.querySelector('#tempoMateriaTable tbody');
     tableBody.innerHTML = '';  // Limpar a tabela antes de renderizar
@@ -403,20 +407,16 @@ function renderizarTempoPorMateria(tempoPorMateria) {
         materiaCell.textContent = materia;
         row.appendChild(materiaCell);
 
-        // Converter minutos para horas
-        const tempoEmHoras = tempoPorMateria[materia] / 60;
-
-        // Verificar se o tempo em horas é inteiro
-        const tempoExibido = Number.isInteger(tempoEmHoras) ? tempoEmHoras : tempoEmHoras.toFixed(2);
+        // Converter minutos para horas e arredondar sem casas decimais
+        const tempoEmHoras = Math.round(tempoPorMateria[materia] / 60);
 
         const tempoCell = document.createElement('td');
-        tempoCell.textContent = tempoExibido;
+        tempoCell.textContent = tempoEmHoras;
         row.appendChild(tempoCell);
 
         tableBody.appendChild(row);
     }
 }
-
 
 // Chamar a função para somar e exibir o tempo por matéria ao carregar a página
 window.onload = function() {
