@@ -172,10 +172,10 @@ document.getElementById('deleteTaskButton').addEventListener('click', deleteTask
 
 function calculateDaysUntilChristmas() {
     const today = new Date();
-    const christmasDate = new Date(2024, 11, 24); // Define o Natal para o ano de 2025
+    const christmasDate = new Date(2025, 9, 29); 
 
     if (today > christmasDate) {
-        christmasDate.setFullYear(2024); // Atualize para o ano desejado
+        christmasDate.setFullYear(2025); 
     }
 
     const differenceInMillis = christmasDate - today;
